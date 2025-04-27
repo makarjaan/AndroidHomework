@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">AndroidHomework</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Название</string>
+    <string name="kinds">Категории</string>
+    <string name="rating"> %d ⭐</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="back_button">Назад</string>
+    <string name="place_image">place_image</string>
+    <string name="place_name">Place Name</string>
+    <string name="coordinates">Coordinates</string>
+    <string name="description">Description of the place.</string>
+    <string name="address">Адрес места</string>
 </resources>
