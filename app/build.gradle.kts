@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.androidx.fragment)
     implementation(libs.retrofit.gson.converter)
     implementation(libs.hilt)
+    implementation(libs.shimmer)
     ksp(libs.hilt.compiler)
 
 }

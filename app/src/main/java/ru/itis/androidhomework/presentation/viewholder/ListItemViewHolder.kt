@@ -3,7 +3,8 @@ package ru.itis.androidhomework.presentation.viewholder
 import androidx.recyclerview.widget.RecyclerView
 import ru.itis.androidhomework.R
 import ru.itis.androidhomework.databinding.ListItemBinding
-import ru.itis.androidhomework.presentation.model.ListItemData
+import ru.itis.androidhomework.domain.model.FeaturesModel
+
 
 class ListItemViewHolder(
     private val viewBinding: ListItemBinding,
@@ -16,11 +17,10 @@ class ListItemViewHolder(
         }
     }
 
-    fun bindItem(itemData: ListItemData) {
+    fun bindItem(itemData: FeaturesModel) {
         with(viewBinding) {
-            title.text = itemData.title
-            kinds.text = itemData.categories
-            rating.text = root.context.getString(R.string.rating, itemData.rating)
+            title.text = itemData.name
+            rating.text = root.context.getString(R.string.rating, itemData.rate)
         }
     }
 }

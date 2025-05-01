@@ -5,8 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/padding_small"
     app:cardCornerRadius="@dimen/corner_radius"
-    app:cardElevation="@dimen/elevation"
-    app:cardBackgroundColor="@color/md_theme_secondaryContainer">
+    app:cardElevation="@dimen/elevation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,22 +14,22 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="0dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/padding_small"
-            android:text="@string/title"
+            android:background="@color/grey"
+            android:gravity="start"
             android:textColor="@color/md_theme_onSecondaryContainer"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/rating"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/rating"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
-            android:text="@string/rating"
+            android:background="@color/grey"
             android:textColor="@color/md_theme_tertiary"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
