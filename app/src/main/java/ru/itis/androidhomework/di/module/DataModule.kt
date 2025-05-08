@@ -1,9 +1,12 @@
 package ru.itis.androidhomework.di.module
 
 import android.annotation.SuppressLint
+import android.content.Context
+import androidx.room.Room
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -12,6 +15,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import ru.itis.androidhomework.BuildConfig
 import ru.itis.androidhomework.data.remote.OpenTripMapApi
 import ru.itis.androidhomework.BuildConfig.OPEN_TRIP_MAP_BASE_URL
+import ru.itis.androidhomework.data.local.AppDatabase
+import ru.itis.androidhomework.data.local.dao.FeatureDao
+import ru.itis.androidhomework.data.local.dao.LocalDao
 import ru.itis.androidhomework.data.remote.interceptors.AuthInterceptor
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
@@ -61,6 +67,21 @@ class DataModule {
     fun provideGsonConverterFactory(): GsonConverterFactory {
         return GsonConverterFactory.create()
     }
+
+    @Provides
+    @Singleton
+    fun provideDb(@ApplicationContext context: Context) : AppDatabase = Room
+        .databaseBuilder(context, AppDatabase::class.java, AppDatabase.DB_LOG_KEY)
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideLocalDao(db: AppDatabase) : LocalDao = db.localDao
+
+    @Provides
+    @Singleton
+    fun provideFeatureDao(db: AppDatabase) : FeatureDao = db.featuresDao
+
 
     @SuppressLint("CustomX509TrustManager")
     private fun getUnsafeOkHttpClientBuilder(): OkHttpClient.Builder {
