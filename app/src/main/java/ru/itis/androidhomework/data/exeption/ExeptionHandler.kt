@@ -1,4 +1,4 @@
-package ru.itis.androidhomework.data
+package ru.itis.androidhomework.data.exeption
 
 inline fun <T, R> T.runCatching(
     exceptionHandlerDelegate: ExceptionHandlerDelegate,

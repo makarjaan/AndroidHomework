@@ -8,8 +8,8 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.itis.androidhomework.data.ExceptionHandlerDelegate
-import ru.itis.androidhomework.data.runCatching
+import ru.itis.androidhomework.data.exeption.ExceptionHandlerDelegate
+import ru.itis.androidhomework.data.exeption.runCatching
 import ru.itis.androidhomework.domain.model.FeaturesModel
 import ru.itis.androidhomework.domain.usecase.GetFeaturesUseCase
 import javax.inject.Inject

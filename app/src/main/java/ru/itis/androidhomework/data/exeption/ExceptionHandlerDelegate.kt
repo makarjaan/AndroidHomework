@@ -1,4 +1,4 @@
-package ru.itis.androidhomework.data
+package ru.itis.androidhomework.data.exeption
 
 import retrofit2.HttpException
 import ru.itis.androidhomework.R
