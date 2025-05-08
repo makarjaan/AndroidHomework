@@ -19,6 +19,8 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("int", "DB_VERSION", "1")
     }
 
     buildTypes {
@@ -68,5 +70,9 @@ dependencies {
     implementation(libs.hilt)
     implementation(libs.shimmer)
     ksp(libs.hilt.compiler)
+
+    implementation(libs.room)
+    ksp(libs.room.ksp)
+    implementation(libs.room.ktx)
 
 }
