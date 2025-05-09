@@ -120,10 +120,7 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
 
     fun onItemClick(position: Int) {
         val item = rvAdapter?.getItemAt(position)
-        item?.let {
-            val detailsFragment = FeatureDetailsFragment.getInstance(item.xid)
-            (requireActivity() as? MainActivity)?.addFragment(detailsFragment)
-        }
+        item?.let { viewModel.goToFeatureDetails(it.xid) }
     }
 
     override fun onDestroyView() {

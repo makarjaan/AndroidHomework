@@ -75,4 +75,7 @@ dependencies {
     ksp(libs.room.ksp)
     implementation(libs.room.ktx)
 
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+
 }

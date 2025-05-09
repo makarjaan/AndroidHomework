@@ -4,20 +4,25 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import ru.itis.androidhomework.data.exeption.ExceptionHandlerDelegate
 import ru.itis.androidhomework.data.exeption.runCatching
 import ru.itis.androidhomework.domain.model.FeaturesModel
 import ru.itis.androidhomework.domain.usecase.GetFeaturesUseCase
+import ru.itis.androidhomework.presentation.navigation.nav.NavMain
 import javax.inject.Inject
 
 @HiltViewModel
 class MainListViewModel @Inject constructor(
     private val getFeaturesUseCase: GetFeaturesUseCase,
     private val exceptionHandlerDelegate: ExceptionHandlerDelegate,
+    private val navMain: NavMain
 ): ViewModel() {
 
     private val _featuresListState = MutableStateFlow<List<FeaturesModel>>(emptyList())
@@ -37,13 +42,22 @@ class MainListViewModel @Inject constructor(
 
     val errorsChannel = Channel<Throwable>()
 
+    private var delayJob: Job? = null
+
+    fun mm(inpur:String) {
+        delayJob = null
+        delayJob = viewModelScope.launch {
+            delay(3333L)
+            featureListState.collect()
+        }
+    }
+
     fun getCoordinates(query: String) {
         _loadingState.value = true
         _inputFocusState.value = true
         _isActionInProgress.value = true
         viewModelScope.launch {
             runCatching(exceptionHandlerDelegate) {
-                Log.d("OKHTTP", "летсго")
                 _emptyState.value = false
                 getFeaturesUseCase.invoke(city = query)
             }.onSuccess { featuresListModel ->
@@ -57,6 +71,10 @@ class MainListViewModel @Inject constructor(
                 _isActionInProgress.value = false
             }
         }
+    }
+
+    fun goToFeatureDetails(xid: String) {
+        navMain.goToDetailsPage(xid = xid)
     }
 
     override fun onCleared() {
