@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -15,10 +16,9 @@ import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.launch
 import ru.itis.androidhomework.R
 import ru.itis.androidhomework.databinding.FragmentMainListBinding
+import ru.itis.androidhomework.domain.model.DataSource
 import ru.itis.androidhomework.domain.model.FeaturesModel
-import ru.itis.androidhomework.presentation.MainActivity
 import ru.itis.androidhomework.presentation.adapter.recycler.ListAdapter
-import ru.itis.androidhomework.presentation.screens.DetailsInfo.FeatureDetailsFragment
 import ru.itis.androidhomework.utils.hideKeyboardExtension
 import ru.itis.androidhomework.utils.observe
 
@@ -97,6 +97,16 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
                         .setMessage(errorMessage)
                         .setPositiveButton(android.R.string.ok, null)
                         .show()
+                }
+            }
+
+            lifecycleScope.launch {
+                showToast.collect { dataSource ->
+                    val message = when (dataSource) {
+                        DataSource.API -> R.string.message_api
+                        DataSource.CACHE -> R.string.message_cash
+                    }
+                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -9,14 +9,14 @@ plugins {
 
 android {
     namespace = "ru.itis.androidhomework"
-    compileSdk = 35
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "ru.itis.androidhomework"
-        minSdk = 25
-        targetSdk = 35
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = rootProject.extra.get("versionCode") as Int
+        versionName = rootProject.extra.get("versionName") as String
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -54,6 +54,13 @@ android {
 }
 
 dependencies {
+    implementation(project(path = ":feature:auth"))
+    implementation(project(path = ":core:base"))
+    implementation(project(path = ":core:data"))
+    implementation(project(path = ":core:domain"))
+    implementation(project(path = ":core:di"))
+    implementation(project(path = ":core:navigation"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.glide)
     implementation(libs.androidx.appcompat)
@@ -67,8 +74,9 @@ dependencies {
     implementation(libs.http.loggin.interceptor)
     implementation(libs.androidx.fragment)
     implementation(libs.retrofit.gson.converter)
-    implementation(libs.hilt)
     implementation(libs.shimmer)
+
+    implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 
     implementation(libs.room)

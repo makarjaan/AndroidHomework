@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/graph_global.xml"
-    app:startDestination="@id/destination_main_page">
+    app:startDestination="@id/destination_feature_registration_page">
 
     <action
         android:id="@+id/action_global_main_page"
@@ -18,6 +18,8 @@
         android:name="ru.itis.androidhomework.presentation.screens.MainList.MainListFragment"
         android:label="destination_main_page" />
 
+
+
     <action
         android:id="@+id/action_global_feature_details_page"
         app:destination="@+id/destination_feature_details_page"
@@ -30,6 +32,40 @@
     <fragment
         android:id="@+id/destination_feature_details_page"
         android:name="ru.itis.androidhomework.presentation.screens.DetailsInfo.FeatureDetailsFragment"
-        android:label="destination_main_page" />
+        android:label="destination_feature_details_page" />
+
+
+
+
+    <action
+        android:id="@+id/action_global_feature_login_page"
+        app:destination="@+id/destination_feature_login_page"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:popEnterAnim="@android:anim/fade_in"
+        app:popExitAnim="@android:anim/fade_out"
+        />
+
+    <fragment
+        android:id="@+id/destination_feature_login_page"
+        android:name="ru.itis.androidhomework.auth.AuthFragment"
+        android:label="destination_feature_login_page" />
+
+
+
+
+    <action
+        android:id="@+id/action_global_feature_registration_page"
+        app:destination="@+id/destination_feature_registration_page"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:popEnterAnim="@android:anim/fade_in"
+        app:popExitAnim="@android:anim/fade_out"
+        />
+
+    <fragment
+        android:id="@+id/destination_feature_registration_page"
+        android:name="ru.itis.androidhomework.auth.RegistrationFragment"
+        android:label="destination_feature_registration_page" />
 
 </navigation>

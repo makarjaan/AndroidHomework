@@ -4,18 +4,18 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import ru.itis.androidhomework.data.exeption.ExceptionHandlerDelegate
-import ru.itis.androidhomework.data.exeption.runCatching
+import ru.itis.androidhomework.exeption.runCatching
+import ru.itis.androidhomework.domain.model.DataSource
 import ru.itis.androidhomework.domain.model.FeaturesModel
 import ru.itis.androidhomework.domain.usecase.GetFeaturesUseCase
-import ru.itis.androidhomework.presentation.navigation.nav.NavMain
+import ru.itis.androidhomework.exeption.ExceptionHandlerDelegate
+import ru.itis.androidhomework.navigation.NavMain
 import javax.inject.Inject
 
 @HiltViewModel
@@ -40,17 +40,10 @@ class MainListViewModel @Inject constructor(
     private val _isActionInProgress = MutableStateFlow(false)
     val isActionInProgress = _isActionInProgress.asStateFlow()
 
+    private val _showToast = MutableSharedFlow<DataSource>(replay = 0)
+    val showToast = _showToast.asSharedFlow()
+
     val errorsChannel = Channel<Throwable>()
-
-    private var delayJob: Job? = null
-
-    fun mm(inpur:String) {
-        delayJob = null
-        delayJob = viewModelScope.launch {
-            delay(3333L)
-            featureListState.collect()
-        }
-    }
 
     fun getCoordinates(query: String) {
         _loadingState.value = true
@@ -61,8 +54,9 @@ class MainListViewModel @Inject constructor(
                 _emptyState.value = false
                 getFeaturesUseCase.invoke(city = query)
             }.onSuccess { featuresListModel ->
-                featuresListModel.ifEmpty { _emptyState.value = true }
-                _featuresListState.value = featuresListModel
+                featuresListModel.features.ifEmpty { _emptyState.value = true }
+                _featuresListState.value = featuresListModel.features
+                _showToast.emit(featuresListModel.source)
             }.onFailure { throwable ->
                 errorsChannel.send(throwable)
             }.also {
@@ -74,7 +68,7 @@ class MainListViewModel @Inject constructor(
     }
 
     fun goToFeatureDetails(xid: String) {
-        navMain.goToDetailsPage(xid = xid)
+        navMain.goToDetailPage(xid = xid)
     }
 
     override fun onCleared() {

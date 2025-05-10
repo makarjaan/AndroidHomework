@@ -8,8 +8,7 @@ import androidx.navigation.fragment.NavHostFragment
 import dagger.hilt.android.AndroidEntryPoint
 import ru.itis.androidhomework.R
 import ru.itis.androidhomework.databinding.ActivityMainBinding
-import ru.itis.androidhomework.presentation.navigation.nav.Nav
-import ru.itis.androidhomework.presentation.screens.MainList.MainListFragment
+import ru.itis.androidhomework.navigation.Nav
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -41,10 +40,8 @@ class MainActivity : AppCompatActivity(), Nav.Provider {
         return navController
     }
 
-
     override fun onDestroy() {
         super.onDestroy()
-        viewBinding = null
         if (this::nav.isInitialized) {
             nav.clearNavProvider(navProvider = this)
         }
