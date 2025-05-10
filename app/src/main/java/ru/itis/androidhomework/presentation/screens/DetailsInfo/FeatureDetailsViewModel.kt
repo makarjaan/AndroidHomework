@@ -10,10 +10,10 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import ru.itis.androidhomework.data.ExceptionHandlerDelegate
-import ru.itis.androidhomework.data.runCatching
+import ru.itis.androidhomework.exeption.runCatching
 import ru.itis.androidhomework.domain.model.FeatureDetailsModel
 import ru.itis.androidhomework.domain.usecase.GetFeatureDetailsUseCase
+import ru.itis.androidhomework.exeption.ExceptionHandlerDelegate
 
 class FeatureDetailsViewModel @AssistedInject constructor(
     @Assisted private val xid: String,

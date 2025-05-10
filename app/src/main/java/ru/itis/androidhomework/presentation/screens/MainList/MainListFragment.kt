@@ -1,11 +1,12 @@
 package ru.itis.androidhomework.presentation.screens.MainList
 
-import android.os.Bundle
+import  android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -15,10 +16,9 @@ import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.launch
 import ru.itis.androidhomework.R
 import ru.itis.androidhomework.databinding.FragmentMainListBinding
+import ru.itis.androidhomework.domain.model.DataSource
 import ru.itis.androidhomework.domain.model.FeaturesModel
-import ru.itis.androidhomework.presentation.MainActivity
 import ru.itis.androidhomework.presentation.adapter.recycler.ListAdapter
-import ru.itis.androidhomework.presentation.screens.DetailsInfo.FeatureDetailsFragment
 import ru.itis.androidhomework.utils.hideKeyboardExtension
 import ru.itis.androidhomework.utils.observe
 
@@ -99,6 +99,16 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
                         .show()
                 }
             }
+
+            lifecycleScope.launch {
+                showToast.collect { dataSource ->
+                    val message = when (dataSource) {
+                        DataSource.API -> R.string.message_api
+                        DataSource.CACHE -> R.string.message_cash
+                    }
+                    Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -120,10 +130,7 @@ class MainListFragment : Fragment(R.layout.fragment_main_list) {
 
     fun onItemClick(position: Int) {
         val item = rvAdapter?.getItemAt(position)
-        item?.let {
-            val detailsFragment = FeatureDetailsFragment.getInstance(item.xid)
-            (requireActivity() as? MainActivity)?.addFragment(detailsFragment)
-        }
+        item?.let { viewModel.goToFeatureDetails(it.xid) }
     }
 
     override fun onDestroyView() {

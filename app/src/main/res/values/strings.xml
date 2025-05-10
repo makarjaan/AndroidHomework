@@ -13,6 +13,8 @@
     <string name="address">Адрес места</string>
     <string name="search">Найти населённый пункт</string>
     <string name="just_do_it">Введите название населённого пункта</string>
+    <string name="message_api">Данные из API</string>
+    <string name="message_cash">Данные из кэша</string>
 
     <!-- details -->
     <string name="non_name">Без имени</string>

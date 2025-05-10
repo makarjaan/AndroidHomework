@@ -21,4 +21,12 @@ dependencyResolutionManagement {
 
 rootProject.name = "AndroidHomework"
 include(":app")
- 
+include(":feature")
+include(":data")
+include(":core:data")
+include(":core:domain")
+include(":core:base")
+include(":core:di")
+include(":core:navigation")
+include(":feature:auth")
+include(":feature:auth")
