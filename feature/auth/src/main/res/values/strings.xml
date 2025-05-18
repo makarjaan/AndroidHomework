@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="btn_regist">Зарегистрироваться</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Имя</string>
+
+    <string name="zapolni">Заполните все поля</string>
+    <string name="fail">Не удалось зарегестрироваться</string>
+    <string name="fail_login">Не удалось войти</string>
+    <string name="yra">Вы успешно зарегестрировались</string>
+    <string name="auth">Войти</string>
+    <string name="invalid">Неправильный пароль или логин</string>
+</resources>

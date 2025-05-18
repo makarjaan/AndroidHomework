@@ -1,6 +1,5 @@
 package ru.itis.androidhomework.navigation
 
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.NavController
 
 interface Nav {
