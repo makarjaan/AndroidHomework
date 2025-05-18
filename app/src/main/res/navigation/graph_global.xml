@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/destination_main_page"
-        android:name="ru.itis.androidhomework.presentation.screens.MainList.MainListFragment"
+        android:name="ru.itis.androidhomework.search.MainListFragment"
         android:label="destination_main_page" />
 
 
@@ -31,7 +31,7 @@
 
     <fragment
         android:id="@+id/destination_feature_details_page"
-        android:name="ru.itis.androidhomework.presentation.screens.DetailsInfo.FeatureDetailsFragment"
+        android:name="ru.itis.androidhomework.detail.FeatureDetailsFragment"
         android:label="destination_feature_details_page" />
 
 

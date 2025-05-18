@@ -45,6 +45,7 @@ shimmer = "0.5.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
+composeBom = "2024.09.00"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -86,6 +87,12 @@ compose-foundation = { group = "androidx.composse.foundation", name = "foundatio
 compose-runtime = { group = "androidx.composse.runtime", name = "runtime", version.ref = "compose"}
 compose-ui = { group = "androidx.composse.ui", name = "ui", version.ref = "compose"}
 compose-material = { group = "androidx.composse.material", name = "material", version.ref = "compose"}
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
+androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 
 [bundles]
 compose-bundle = ["compose-foundation", "compose-material", "compose-runtime", "compose-ui"]
