@@ -1,4 +1,4 @@
-package ru.itis.androidhomework.di.module
+package ru.itis.androidhomework.data.di
 
 import dagger.Binds
 import dagger.Module
@@ -20,7 +20,6 @@ interface BinderModule {
     @Binds
     @Singleton
     fun bindSearchRepository_to_Impl(impl: SearchFeaturesRepositoryImpl): SearchFeaturesRepository
-
 
     @Binds
     @Singleton

@@ -12,7 +12,7 @@ gradle-secrets = "2.0.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
 
-
+compose = "1.8.0"
 # AndroidX
 coreKtx = "1.16.0"
 appcompat = "1.7.0"
@@ -82,6 +82,13 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 
+compose-foundation = { group = "androidx.composse.foundation", name = "foundation", version.ref = "compose"}
+compose-runtime = { group = "androidx.composse.runtime", name = "runtime", version.ref = "compose"}
+compose-ui = { group = "androidx.composse.ui", name = "ui", version.ref = "compose"}
+compose-material = { group = "androidx.composse.material", name = "material", version.ref = "compose"}
+
+[bundles]
+compose-bundle = ["compose-foundation", "compose-material", "compose-runtime", "compose-ui"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

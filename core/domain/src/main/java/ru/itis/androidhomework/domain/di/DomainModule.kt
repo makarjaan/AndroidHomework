@@ -1,4 +1,4 @@
-package ru.itis.androidhomework.di.module
+package ru.itis.androidhomework.domain.di
 
 import dagger.Module
 import dagger.Provides

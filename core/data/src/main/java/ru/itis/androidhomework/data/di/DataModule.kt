@@ -1,4 +1,4 @@
-package ru.itis.androidhomework.di.module
+package ru.itis.androidhomework.data.di
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,9 +12,9 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import ru.itis.androidhomework.BuildConfig
+import ru.itis.androidhomework.data.BuildConfig
 import ru.itis.androidhomework.data.remote.OpenTripMapApi
-import ru.itis.androidhomework.BuildConfig.OPEN_TRIP_MAP_BASE_URL
+import ru.itis.androidhomework.data.BuildConfig.OPEN_TRIP_MAP_BASE_URL
 import ru.itis.androidhomework.data.local.AppDatabase
 import ru.itis.androidhomework.data.local.dao.FeatureDao
 import ru.itis.androidhomework.data.local.dao.LocalDao
