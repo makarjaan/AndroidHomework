@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "ru.itis.androidhomework.search"
-    compileSdk = libs.versions.compileSdk.get().toInt()
+    namespace = "ru.itis.androidhomework.chart"
+    compileSdk = 35
 
     defaultConfig {
-        minSdk = libs.versions.minSdk.get().toInt()
+        minSdk = 25
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -33,9 +33,6 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
@@ -49,22 +46,16 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.ui.android)
-    implementation(libs.androidx.ui.tooling.preview.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    implementation(libs.androidx.fragment)
-    implementation(libs.shimmer)
-    implementation(libs.glide)
-    implementation(libs.material3)
+    implementation(libs.androidx.material3)
 
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 
     implementation(libs.bundles.compose.bundle)
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.androidx.material.icons.core)
-    implementation(libs.androidx.material.icons.extended)
-    implementation(libs.accompanist.placeholder.material)
+    implementation(libs.material3)
+    implementation(libs.bundles.coil)
 }

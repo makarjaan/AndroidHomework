@@ -65,7 +65,23 @@
 
     <fragment
         android:id="@+id/destination_feature_registration_page"
-        android:name="ru.itis.androidhomework.auth.RegistrationFragment"
+        android:name="ru.itis.androidhomework.chart.FeatureDetailsFragment"
         android:label="destination_feature_registration_page" />
+
+
+
+    <action
+        android:id="@+id/action_global_feature_chart_page"
+        app:destination="@+id/destination_feature_chart_page"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:popEnterAnim="@android:anim/fade_in"
+        app:popExitAnim="@android:anim/fade_out"
+        />
+
+    <fragment
+        android:id="@+id/destination_feature_chart_page"
+        android:name="ru.itis.androidhomework.chart.FeatureDetailsFragment"
+        android:label="destination_feature_chart_page" />
 
 </navigation>

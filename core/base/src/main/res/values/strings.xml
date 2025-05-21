@@ -32,10 +32,18 @@
     <string name="error_unknown">Неизвестная ошибка</string>
     <string name="empty_list_message">В этой местности нет достопримечательностей</string>
 
+    <string name="chart_btn">График</string>
+    <string name="chart_draw">Нарисовать</string>
+    <string name="error_check">Проверь данные</string>
+
     <!-- details -->
     <string name="non_name">Без имени</string>
     <string name="non_address">Адрес не указан</string>
     <string name="hyperlink">Узнать подробности</string>
     <string name="ok">ОК</string>
+    
+    <!-- chart -->
+    <string name="pointCount">Количество точек</string>
+    <string name="points">Значения через запятую</string>
 
 </resources>

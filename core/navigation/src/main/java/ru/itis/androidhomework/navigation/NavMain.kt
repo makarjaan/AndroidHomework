@@ -11,4 +11,6 @@ interface NavMain {
     fun goToRegistrationPage()
 
     fun goToLoginPage()
+
+    fun goToChartPage()
 }

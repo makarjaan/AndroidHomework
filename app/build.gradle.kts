@@ -57,6 +57,8 @@ dependencies {
     implementation(project(path = ":feature:auth"))
     implementation(project(path = ":feature:search"))
     implementation(project(path = ":feature:detail"))
+    implementation(project(path = ":feature:chart"))
+
     implementation(project(path = ":core:base"))
     implementation(project(path = ":core:data"))
     implementation(project(path = ":core:domain"))

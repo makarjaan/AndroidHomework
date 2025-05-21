@@ -17,6 +17,7 @@ data class SearchScreenState (
 
 sealed interface SearchScreenEvent {
     object GetList: SearchScreenEvent
+    object OnButtonChartClick: SearchScreenEvent
     data class OnItemClick(val xid: String) : SearchScreenEvent
     data class UserInput(val input: String) : SearchScreenEvent
 }

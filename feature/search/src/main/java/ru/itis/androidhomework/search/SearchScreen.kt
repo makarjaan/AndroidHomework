@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import ru.itis.androidhomework.domain.utils.Constants
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -136,6 +137,14 @@ fun SearchScreen(
                     }
                 )
             )
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            Button(
+                onClick = { viewModel.reduce(SearchScreenEvent.OnButtonChartClick) }
+            ) {
+                Text(stringResource(baseR.string.chart_btn), style = MaterialTheme.typography.bodyMedium)
+            }
 
             Spacer(modifier = Modifier.height(8.dp))
 

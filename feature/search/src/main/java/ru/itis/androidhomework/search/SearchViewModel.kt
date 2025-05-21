@@ -44,6 +44,10 @@ class SearchViewModel @Inject constructor(
             is SearchScreenEvent.OnItemClick -> {
                 navMain.goToDetailPage(xid = event.xid)
             }
+
+            is SearchScreenEvent.OnButtonChartClick -> {
+                navMain.goToChartPage()
+            }
         }
     }
 
