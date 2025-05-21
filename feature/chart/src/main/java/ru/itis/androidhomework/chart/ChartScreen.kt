@@ -117,9 +117,7 @@ fun ChartScreen(modifier: Modifier = Modifier) {
                 unfocusedTextColor = MaterialTheme.colorScheme.outline,
                 focusedLabelColor = MaterialTheme.colorScheme.primaryContainer
             ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .focusRequester(secondFieldFocusRequester)
+            modifier = Modifier.fillMaxWidth().focusRequester(secondFieldFocusRequester)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
