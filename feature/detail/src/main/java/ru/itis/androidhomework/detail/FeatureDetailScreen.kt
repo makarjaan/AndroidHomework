@@ -87,7 +87,7 @@ fun DetailScreen(
             text = detailUiState.placeName,
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primaryContainer
         )
 
 
@@ -126,7 +126,7 @@ fun WikiLink(url: String) {
             .clickable {
                 launcher.launch(Intent(Intent.ACTION_VIEW, url.toUri()))
             },
-        color = MaterialTheme.colorScheme.primary,
+        color = MaterialTheme.colorScheme.primaryContainer,
         style = MaterialTheme.typography.headlineSmall
     )
 }

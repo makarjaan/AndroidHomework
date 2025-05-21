@@ -117,7 +117,9 @@ fun ChartScreen(modifier: Modifier = Modifier) {
                 unfocusedTextColor = MaterialTheme.colorScheme.outline,
                 focusedLabelColor = MaterialTheme.colorScheme.primaryContainer
             ),
-            modifier = Modifier.fillMaxWidth().focusRequester(secondFieldFocusRequester)
+            modifier = Modifier
+                .fillMaxWidth()
+                .focusRequester(secondFieldFocusRequester)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -162,7 +164,8 @@ fun Graph(data: List<Float>){
     val primaryColor = MaterialTheme.colorScheme.primary
 
     Canvas(modifier = Modifier
-        .size(300.dp)
+        .fillMaxWidth()
+        .height(300.dp)
     ) {
         val canvasHeight = size.height
         val canvasWidth = size.width
