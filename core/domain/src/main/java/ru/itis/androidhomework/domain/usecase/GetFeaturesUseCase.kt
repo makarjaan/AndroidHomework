@@ -2,7 +2,7 @@ package ru.itis.androidhomework.domain.usecase
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
-import ru.itis.androidhomework.domain.exeption.WrongCoordinatesException
+import ru.itis.androidhomework.common.exeption.AppBusinessException.WrongCoordinatesException
 import ru.itis.androidhomework.domain.model.FeaturesModel
 import ru.itis.androidhomework.domain.model.FeaturesResult
 import ru.itis.androidhomework.domain.repository.SearchFeaturesRepository

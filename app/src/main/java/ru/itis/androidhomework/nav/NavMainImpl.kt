@@ -41,4 +41,12 @@ class NavMainImpl @Inject constructor(
             action = R.id.destination_feature_login_page
         )
     }
+
+    override fun goToChartPage() {
+        navigatorDelegate.navigate(
+            action = R.id.destination_feature_chart_page
+        )
+    }
+
+
 }
