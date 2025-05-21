@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/graph_global.xml"
-    app:startDestination="@id/destination_feature_registration_page">
+    app:startDestination="@id/destination_main_page">
 
     <action
         android:id="@+id/action_global_main_page"
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/destination_main_page"
-        android:name="ru.itis.androidhomework.search.MainListFragment"
+        android:name="ru.itis.androidhomework.search.SearchFragment"
         android:label="destination_main_page" />
 
 

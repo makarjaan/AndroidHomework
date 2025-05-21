@@ -2,12 +2,10 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt.plugin)
-    alias(libs.plugins.compose.compiler)
 }
 
 android {
-    namespace = "ru.itis.androidhomework.detail"
+    namespace = "ru.itis.androidhomework.common"
     compileSdk = 35
 
     defaultConfig {
@@ -33,21 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-
-    buildFeatures {
-        compose = true
-        viewBinding = true
-    }
-
 }
 
 dependencies {
-
-    implementation(project(path = ":core:base"))
-    implementation(project(path = ":core:navigation"))
-    implementation(project(path = ":core:domain"))
-    implementation(project(path = ":core:utils"))
-    implementation(project(path = ":core:common"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -56,14 +42,10 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation(libs.shimmer)
-    implementation(libs.glide)
 
     implementation(libs.hilt)
     ksp(libs.hilt.compiler)
 
-    implementation(libs.bundles.compose.bundle)
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.material3)
-    implementation(libs.bundles.coil)
+    implementation(libs.retrofit)
+
 }

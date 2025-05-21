@@ -3,7 +3,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title">Название</string>
     <string name="kinds">Категории</string>
-    <string name="rating"> %d ⭐</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="back_button">Назад</string>
     <string name="place_image">place_image</string>
@@ -15,6 +14,9 @@
     <string name="just_do_it">Введите название населённого пункта</string>
     <string name="message_api">Данные из API</string>
     <string name="message_cash">Данные из кэша</string>
+
+    <string name="rating">%.1f</string>
+    <string name="rating_icon_content_description">Рейтинг</string>
 
     <!-- error -->
     <string name="error_title">Ошибка</string>

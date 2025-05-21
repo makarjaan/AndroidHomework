@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.gradle.secrets.plugin)
     alias(libs.plugins.hilt.plugin)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -54,6 +55,8 @@ android {
 
 dependencies {
     implementation(project(path = ":feature:auth"))
+    implementation(project(path = ":feature:search"))
+    implementation(project(path = ":feature:detail"))
     implementation(project(path = ":core:base"))
     implementation(project(path = ":core:data"))
     implementation(project(path = ":core:domain"))
@@ -82,5 +85,10 @@ dependencies {
 
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+
+    implementation(libs.bundles.compose.bundle)
+
+    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.material3)
 
 }
