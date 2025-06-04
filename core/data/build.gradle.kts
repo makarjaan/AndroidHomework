@@ -59,7 +59,6 @@ dependencies {
 
     implementation(project(path = ":core:domain"))
 
-
     implementation(libs.room)
     ksp(libs.room.ksp)
     implementation(libs.room.ktx)

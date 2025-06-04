@@ -1,10 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.gradle.secrets.plugin)
     alias(libs.plugins.hilt.plugin)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -55,10 +55,13 @@ android {
 
 dependencies {
     implementation(project(path = ":feature:auth"))
+    implementation(project(path = ":feature:search"))
+    implementation(project(path = ":feature:detail"))
+    implementation(project(path = ":feature:chart"))
+
     implementation(project(path = ":core:base"))
     implementation(project(path = ":core:data"))
     implementation(project(path = ":core:domain"))
-    implementation(project(path = ":core:di"))
     implementation(project(path = ":core:navigation"))
 
     implementation(libs.androidx.core.ktx)
@@ -66,7 +69,6 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.lifecycle.runtime.ktx)
-    implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.retrofit)
@@ -85,5 +87,10 @@ dependencies {
 
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+
+    implementation(libs.bundles.compose.bundle)
+
+    androidTestImplementation(libs.androidx.espresso.core)
+    implementation(libs.material3)
 
 }
