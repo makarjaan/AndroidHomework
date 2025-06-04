@@ -12,8 +12,8 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveUser(user: UserEntity)
 
-    @Query("SELECT COUNT(*) FROM users WHERE :email=email")
-    suspend fun isUserInDatabase(email: String): Int
+    @Query("SELECT COUNT(*) FROM users")
+    suspend fun getUsersCount(): Int
 
     @Query("SELECT id FROM users WHERE :email=email")
     suspend fun getUserIdByEmail(email: String): String

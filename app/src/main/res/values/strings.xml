@@ -22,4 +22,19 @@
     <string name="hyperlink">Узнать подробности</string>
     <string name="ok">ОК</string>
 
+    <string name="default_notification_channel_id">default channel</string>
+
+    <!-- notifications -->
+    <string name="vkl_notifications">Уведомления включены</string>
+    <string name="vykl_norifications">Уведомления выключены</string>
+    <string name="permission_notif">Разрешение на уведомления</string>
+    <string name="permission_dialog">Для получения важных уведомлений разрешите показ уведомлений.</string>
+    <string name="permission_ok">Разрешит</string>
+    <string name="cancel">Отмена</string>
+    <string name="la">Уведомления будут отключены</string>
+    <string name="channel_name">1 category channel</string>
+    <string name="channel_desc">Important Notifications</string>
+    <string name="sorry">Доступ к этой фиче закрыт</string>
+    <string name="so_sorry">Функциональность временно недоступна</string>
+
 </resources>

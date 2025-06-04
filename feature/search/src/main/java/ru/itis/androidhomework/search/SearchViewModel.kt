@@ -1,7 +1,11 @@
 package ru.itis.androidhomework.search
 
+import android.util.Log
+import androidx.compose.material3.Snackbar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.Firebase
+import com.google.firebase.remoteconfig.remoteConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,7 +46,15 @@ class SearchViewModel @Inject constructor(
             }
 
             is SearchScreenEvent.OnItemClick -> {
-                navMain.goToDetailPage(xid = event.xid)
+                val isFeatureEnabled = Firebase.remoteConfig.getBoolean("is_feature_enabled")
+
+                if (isFeatureEnabled) {
+                    navMain.goToDetailPage(xid = event.xid)
+                } else {
+                    viewModelScope.launch {
+                        _effects.emit(SearchEffect.ShowSnackbar)
+                    }
+                }
             }
 
             is SearchScreenEvent.OnButtonChartClick -> {

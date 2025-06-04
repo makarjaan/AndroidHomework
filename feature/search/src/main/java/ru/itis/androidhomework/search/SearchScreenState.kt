@@ -25,4 +25,5 @@ sealed interface SearchScreenEvent {
 sealed interface SearchEffect {
     data class ShowToast(val source: DataSource) : SearchEffect
     data class ShowError(val throwable: Throwable) : SearchEffect
+    object ShowSnackbar: SearchEffect
 }

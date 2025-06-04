@@ -18,9 +18,11 @@ import ru.itis.androidhomework.data.BuildConfig.OPEN_TRIP_MAP_BASE_URL
 import ru.itis.androidhomework.data.local.AppDatabase
 import ru.itis.androidhomework.data.local.dao.FeatureDao
 import ru.itis.androidhomework.data.local.dao.LocalDao
+import ru.itis.androidhomework.data.local.dao.PushEventDao
 import ru.itis.androidhomework.data.local.dao.RequestHistoryDao
 import ru.itis.androidhomework.data.local.dao.UserDao
 import ru.itis.androidhomework.data.local.migrations.Migration_1_2
+import ru.itis.androidhomework.data.local.migrations.Migration_2_3
 import ru.itis.androidhomework.data.remote.interceptors.AuthInterceptor
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
@@ -75,7 +77,7 @@ class DataModule {
     @Singleton
     fun provideDb(@ApplicationContext context: Context) : AppDatabase = Room
         .databaseBuilder(context, AppDatabase::class.java, AppDatabase.DB_LOG_KEY)
-        .addMigrations(Migration_1_2())
+        .addMigrations(Migration_1_2(), Migration_2_3())
         .build()
 
     @Provides
@@ -89,6 +91,10 @@ class DataModule {
     @Provides
     @Singleton
     fun provideUserDao(db: AppDatabase) : UserDao = db.userDao
+
+    @Provides
+    @Singleton
+    fun providePushEventDao(db: AppDatabase) : PushEventDao = db.pushEventDao
 
 
     @Provides
