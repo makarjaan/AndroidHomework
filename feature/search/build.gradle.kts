@@ -67,4 +67,6 @@ dependencies {
     implementation(libs.androidx.material.icons.core)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.accompanist.placeholder.material)
+
+    implementation(libs.firebase.remote.config)
 }
