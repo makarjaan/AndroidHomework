@@ -8,4 +8,6 @@ interface UserRepository {
 
     suspend fun saveUser(user: UserModel)
 
+    suspend fun isUserAuthorized(): Boolean
+
 }

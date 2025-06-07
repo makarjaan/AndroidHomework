@@ -14,10 +14,18 @@ ksp = "2.0.21-1.0.28"
 gradle-secrets = "2.0.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
+google-services = "4.4.2"
 
 compose = "1.8.0"
 hiltNavigationCompose = "1.2.0"
 coil = "2.7.0"
+
+#firebase
+firebase-messaging = "24.1.1"
+firebase-crashlytics = "19.4.3"
+firebase-analytics = "22.4.0"
+firebase-remote-config = "22.1.2"
+crashlytics-plugin = "3.0.3"
 
 # AndroidX
 coreKtx = "1.16.0"
@@ -116,6 +124,12 @@ coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 coil-svg = { module = "io.coil-kt:coil-svg", version.ref = "coil" }
 
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebase-messaging"}
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics", version.ref = "firebase-analytics"}
+firebase-crashlytics = { group = "com.google.firebase", name = "firebase-crashlytics", version.ref = "firebase-crashlytics"}
+firebase-remote-config = { group = "com.google.firebase", name = "firebase-config", version.ref = "firebase-remote-config"}
+
+
 [bundles]
 compose-bundle = ["compose-foundation", "compose-material", "compose-runtime", "compose-ui"]
 coil = ["coil", "coil-compose", "coil-svg"]
@@ -129,3 +143,5 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 gradle-secrets-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "gradle-secrets" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+google-services = { id = "com.google.gms.google-services", version.ref = "google-services"}
+crashlytics-plugin = { id = "com.google.firebase.crashlytics", version.ref = "crashlytics-plugin"}

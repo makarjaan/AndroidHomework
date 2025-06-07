@@ -104,7 +104,7 @@ fun DetailScreen(
         Text(
             text = detailUiState.desc,
             fontSize = 20.sp,
-            color = MaterialTheme.colorScheme.primary
+            color = MaterialTheme.colorScheme.primaryContainer
         )
 
         Spacer(modifier = Modifier.height(16.dp))

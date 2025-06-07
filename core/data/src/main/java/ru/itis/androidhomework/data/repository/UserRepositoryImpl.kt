@@ -20,4 +20,8 @@ class UserRepositoryImpl @Inject constructor(
         val userEntity = dbMapper.mapToUserEntity(user)
         userDao.saveUser(userEntity)
     }
+
+    override suspend fun isUserAuthorized(): Boolean {
+        return userDao.getUsersCount() > 0
+    }
 }
