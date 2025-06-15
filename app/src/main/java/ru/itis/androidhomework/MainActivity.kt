@@ -1,7 +1,6 @@
 package ru.itis.androidhomework
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import ru.itis.androidhomework.databinding.ActivityMainBinding
 
@@ -15,9 +14,7 @@ class MainActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         binding.pieCustom.setDataChart(
-            listOf(1 to 25, 2 to 42, 3 to 33)
+            listOf(1 to 25, 2 to 42, 4 to 15, 5 to 10, 6 to 8)
         )
-        Log.d("TEST-TAG", "йоу")
-        binding.pieCustom.startAnimation()
     }
 }

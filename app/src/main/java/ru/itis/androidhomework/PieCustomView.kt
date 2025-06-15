@@ -11,7 +11,14 @@ import kotlin.math.atan2
 import kotlin.math.hypot
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Paint
 import android.graphics.RectF
+import android.os.Build
+import android.os.Bundle
+import android.os.Parcelable
+import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.graphics.toColorInt
 
 
 class PieChartView @JvmOverloads constructor(
@@ -32,6 +39,13 @@ class PieChartView @JvmOverloads constructor(
     private var dataList: List<Pair<Int, Int>> = listOf()  //исходный список данных
     private var animationSweepAngle: Int = 0 //для анимациия
     private var selectedSectorId: Int? = null // выделение секторов
+
+    private val paintText = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.BLACK
+        textAlign = Paint.Align.CENTER
+        textSize = context.spToPx(14)
+    }
+
 
     init {
         if (attrs != null) {
@@ -59,10 +73,13 @@ class PieChartView @JvmOverloads constructor(
 
     fun setDataChart(list: List<Pair<Int, Int>>) {
         val total = list.sumOf { it.second }
-        require(total == 100) { "Сумма процентов должна быть равна 100, сейчас $total" }
-
+        if (total != 100) {
+            Toast.makeText(context, "Сумма процентов должна быть равна 100, сейчас $total", Toast.LENGTH_SHORT).show()
+            return
+        }
         dataList = list
         calculatePercentageOfData()
+        startAnimation()
         invalidate()
     }
 
@@ -82,14 +99,21 @@ class PieChartView @JvmOverloads constructor(
     override fun onTouchEvent(event: MotionEvent): Boolean {
         if (event.action != MotionEvent.ACTION_DOWN) return super.onTouchEvent(event)
 
-        val dx = event.x - circleCenterX
-        val dy = event.y - circleCenterY
-        val r = hypot(dx.toDouble(), dy.toDouble())
+        val x = event.x - circleCenterX
+        val y = event.y - circleCenterY
+        val distance = hypot(x.toDouble(), y.toDouble())
 
-        selectedSectorId = if (r in (circleRadius - circleStrokeWidth / 2)..(circleRadius + circleStrokeWidth / 2)) {
-            val angle = ((Math.toDegrees(atan2(dy.toDouble(), dx.toDouble())) + 360) % 360).toFloat()
-            percentageCircleList.find { angle in it.percentToStartAt..(it.percentToStartAt + it.percentOfCircle) }?.id
-        } else null
+        if (distance < circleRadius - circleStrokeWidth / 2 || distance > circleRadius + circleStrokeWidth / 2) {
+            selectedSectorId = null
+            invalidate()
+            return true
+        }
+
+        val angle = (Math.toDegrees(atan2(y, x).toDouble()) + 360) % 360
+
+        selectedSectorId = percentageCircleList.firstOrNull {
+            angle >= it.percentToStartAt && angle <= it.percentToStartAt + it.percentOfCircle
+        }?.id
 
         invalidate()
         return true
@@ -119,18 +143,43 @@ class PieChartView @JvmOverloads constructor(
                 else -> 0f
             }
             if (sweepToDraw > 0) {
+                val isSelected = model.id == selectedSectorId
+
                 val paint = model.paint.apply {
-                    color = if (model.id == selectedSectorId)
+                    color = if (isSelected)
                         ColorUtils.blendARGB(model.colorOfLine, Color.WHITE, 0.3f)
                     else model.colorOfLine
+                    strokeWidth = if (isSelected) circleStrokeWidth * 1.3f else circleStrokeWidth
                 }
-                canvas.drawArc(circleRect, model.percentToStartAt, sweepToDraw, false, paint)
+
+                val radius = if (isSelected) circleRadius + circleStrokeWidth * 0.15f else circleRadius
+
+                val rect = RectF(
+                    circleCenterX - radius,
+                    circleCenterY - radius,
+                    circleCenterX + radius,
+                    circleCenterY + radius
+                )
+
+                canvas.drawArc(rect, model.percentToStartAt, sweepToDraw, false, paint)
+
+                val innerRadius = radius - paint.strokeWidth / 2f
+                val outerRadius = radius + paint.strokeWidth / 2f
+                val textRadius = (innerRadius + outerRadius) / 2f
+
+                val centerAngle = model.percentToStartAt + model.percentOfCircle / 2
+                val angleRad = Math.toRadians(centerAngle.toDouble())
+
+                val x = circleCenterX + (textRadius * kotlin.math.cos(angleRad)).toFloat()
+                val y = circleCenterY + (textRadius * kotlin.math.sin(angleRad)).toFloat()
+
+                val percentValue = ((model.percentOfCircle + circleSectionSpace) / 3.6f).toInt()
+                canvas.drawText("$percentValue%", x, y + paintText.textSize / 3, paintText)
             }
             sweepDrawn += model.percentOfCircle
             if (sweepDrawn >= animationSweepAngle) break
         }
     }
-
 
 
 
@@ -155,7 +204,7 @@ class PieChartView @JvmOverloads constructor(
 
         percentageCircleList = dataList.mapIndexed { index, (id, percent) ->
             val sweep = percent * 3.6f - circleSectionSpace
-            val color = Color.parseColor(pieChartColors[index % pieChartColors.size])
+            val color = pieChartColors[index % pieChartColors.size].toColorInt()
 
             PieModel(
                 id = id,
@@ -167,6 +216,26 @@ class PieChartView @JvmOverloads constructor(
                 startAngle += sweep + circleSectionSpace
             }
         }
+    }
+
+
+    override fun onSaveInstanceState(): Parcelable? {
+        val bundle = Bundle()
+        bundle.putParcelable("superState", super.onSaveInstanceState())
+        bundle.putInt("selectedSectorId", selectedSectorId ?: -1)
+        return bundle
+    }
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        if (state is Bundle) {
+            selectedSectorId = state.getInt("selectedSectorId", -1).takeIf { it != -1 }
+            val superState = state.getParcelable("superState", Parcelable::class.java)
+            super.onRestoreInstanceState(superState)
+        } else {
+            super.onRestoreInstanceState(state)
+        }
+        invalidate()
     }
 
 
