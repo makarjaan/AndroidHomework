@@ -37,4 +37,13 @@
     <string name="sorry">Доступ к этой фиче закрыт</string>
     <string name="so_sorry">Функциональность временно недоступна</string>
 
+    <string-array name="pieChartColorArray">
+        <item>#E480F4</item>
+        <item>#6CC3F3</item>
+        <item>#7167ED</item>
+        <item>#D9455F</item>
+        <item>#6054EA</item>
+        <item>#42345A</item>
+        <item>#12345A</item>
+    </string-array>
 </resources>
